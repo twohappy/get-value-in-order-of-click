@@ -1,17 +1,19 @@
-function click1() {
+function clickA(order) {
+  actualOrder.push(`${order}th click is about A`)
   return new Promise(function (resolve, reject) {
     const time = Math.floor(Math.random() * 3000);
     setTimeout(function () {
-      resolve(`1's time is ${time}`);
+      resolve(`${order}'s time is ${time}`);
     }, time);
   })
 }
 
-function click2() {
+function clickB(order) {
+  actualOrder.push(`${order}th click is about B`)
   return new Promise(function (resolve, reject) {
     const time = Math.floor(Math.random() * 3000);
     setTimeout(function () {
-      resolve(`2's time is ${time}`);
+      resolve(`${order}'s time is ${time}`);
     }, time);
   })
 }
@@ -20,13 +22,13 @@ function userClick() {
   const count = 10;
   for (let i = 0; i < count; i++) {
     if (Math.random() > 0.5) {
-      click1().then(num => console.log(num));
-      console.log('click--->  1');
+      clickA(i).then(num => console.log(num));
     } else {
-      click2().then(num => console.log(num));
-      console.log('click--->  2');
+      clickB(i).then(num => console.log(num));
     }
   }
 }
 
+let actualOrder = [];
 userClick();
+actualOrder.forEach(str => console.log(str));
